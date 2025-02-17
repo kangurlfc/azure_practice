@@ -8,7 +8,7 @@
 			"database": "AdventureWorksLT2022",
 			"encrypt": "mandatory",
 			"trustServerCertificate": true,
-			"authenticationType": "Windows",
+			"authenticationType": "SQL",
 			"userName": "SERVERMARTIN",
 			"password": {
 				"type": "AzureKeyVaultSecret",
