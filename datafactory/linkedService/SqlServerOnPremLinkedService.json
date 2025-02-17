@@ -9,14 +9,14 @@
 			"encrypt": "optional",
 			"trustServerCertificate": false,
 			"authenticationType": "SQL",
-			"userName": "MARTIN",
+			"userName": "SERVERMARTIN",
 			"password": {
 				"type": "AzureKeyVaultSecret",
 				"store": {
 					"referenceName": "AzureKeyVault1",
 					"type": "LinkedServiceReference"
 				},
-				"secretName": "password"
+				"secretName": "password2"
 			}
 		},
 		"connectVia": {
