@@ -8,7 +8,7 @@
 			"database": "AdventureWorksLT2022",
 			"encrypt": "optional",
 			"trustServerCertificate": false,
-			"authenticationType": "SQL",
+			"authenticationType": "Windows",
 			"userName": "SERVERMARTIN",
 			"password": {
 				"type": "AzureKeyVaultSecret",
@@ -16,7 +16,8 @@
 					"referenceName": "AzureKeyVault1",
 					"type": "LinkedServiceReference"
 				},
-				"secretName": "password2"
+				"secretName": "password2",
+				"secretVersion": "16dc51352d8a46e3b7bff5b8ccc3e6b6"
 			}
 		},
 		"connectVia": {
