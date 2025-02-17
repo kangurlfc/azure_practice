@@ -6,7 +6,7 @@
 		"typeProperties": {
 			"server": "MARTIN",
 			"database": "AdventureWorksLT2022",
-			"encrypt": "optional",
+			"encrypt": "mandatory",
 			"trustServerCertificate": true,
 			"authenticationType": "Windows",
 			"userName": "SERVERMARTIN",
