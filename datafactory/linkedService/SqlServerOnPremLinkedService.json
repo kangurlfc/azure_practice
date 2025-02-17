@@ -6,7 +6,7 @@
 		"typeProperties": {
 			"server": "MARTIN",
 			"database": "AdventureWorksLT2022",
-			"encrypt": "mandatory",
+			"encrypt": "optional",
 			"trustServerCertificate": true,
 			"authenticationType": "SQL",
 			"userName": "SERVERMARTIN",
@@ -16,7 +16,7 @@
 					"referenceName": "AzureKeyVault1",
 					"type": "LinkedServiceReference"
 				},
-				"secretName": "password2"
+				"secretName": "password3"
 			}
 		},
 		"connectVia": {
