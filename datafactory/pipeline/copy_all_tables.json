@@ -41,6 +41,10 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
+					"items": {
+						"value": "@activity('Lookup1').output.value",
+						"type": "Expression"
+					},
 					"activities": [
 						{
 							"name": "Copy data1",
@@ -58,7 +62,7 @@
 								"source": {
 									"type": "SqlServerSource",
 									"sqlReaderQuery": {
-										"value": "@{concat('SELECT * FROM', item().SchemaName,'.',item().TableName)}",
+										"value": "@{concat('SELECT * FROM', ' ', item().SchemaName,'.',item().TableName)}",
 										"type": "Expression"
 									},
 									"queryTimeout": "02:00:00",
