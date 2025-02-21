@@ -11,6 +11,9 @@
 		"AzureDataLakeStorageLinkedService_properties_typeProperties_url": {
 			"value": "https://martinpractice.dfs.core.windows.net/"
 		},
+		"AzureDatabricksLinkedService_properties_typeProperties_existingClusterId": {
+			"value": "0219-101812-et8un1xl"
+		},
 		"AzureKeyVault1_properties_typeProperties_baseUrl": {
 			"value": "https://martini-vault.vault.azure.net/"
 		},

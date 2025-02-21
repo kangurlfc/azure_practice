@@ -15,6 +15,10 @@
 			"type": "string",
 			"defaultValue": "https://martinpractice.dfs.core.windows.net/"
 		},
+		"AzureDatabricksLinkedService_properties_typeProperties_existingClusterId": {
+			"type": "string",
+			"defaultValue": "0219-101812-et8un1xl"
+		},
 		"AzureKeyVault1_properties_typeProperties_baseUrl": {
 			"type": "string",
 			"defaultValue": "https://martini-vault.vault.azure.net/"
@@ -66,6 +70,9 @@
 					},
 					"AzureKeyVault1_properties_typeProperties_baseUrl": {
 						"value": "[parameters('AzureKeyVault1_properties_typeProperties_baseUrl')]"
+					},
+					"AzureDatabricksLinkedService_properties_typeProperties_existingClusterId": {
+						"value": "[parameters('AzureDatabricksLinkedService_properties_typeProperties_existingClusterId')]"
 					},
 					"SqlServerOnPremLinkedService_properties_typeProperties_server": {
 						"value": "[parameters('SqlServerOnPremLinkedService_properties_typeProperties_server')]"

@@ -15,6 +15,10 @@
 			"type": "string",
 			"defaultValue": "https://martinpractice.dfs.core.windows.net/"
 		},
+		"AzureDatabricksLinkedService_properties_typeProperties_existingClusterId": {
+			"type": "string",
+			"defaultValue": "0219-101812-et8un1xl"
+		},
 		"AzureKeyVault1_properties_typeProperties_baseUrl": {
 			"type": "string",
 			"defaultValue": "https://martini-vault.vault.azure.net/"
@@ -154,6 +158,60 @@
 								}
 							]
 						}
+					},
+					{
+						"name": "Bronze to Silver",
+						"type": "DatabricksNotebook",
+						"dependsOn": [
+							{
+								"activity": "ForEach1",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"notebookPath": "/Users/martinismail6@gmail.com/bronze to silver"
+						},
+						"linkedServiceName": {
+							"referenceName": "AzureDatabricksLinkedService",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "Silver to gold",
+						"type": "DatabricksNotebook",
+						"dependsOn": [
+							{
+								"activity": "Bronze to Silver",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"notebookPath": "/Users/martinismail6@gmail.com/silver to gold"
+						},
+						"linkedServiceName": {
+							"referenceName": "AzureDatabricksLinkedService",
+							"type": "LinkedServiceReference"
+						}
 					}
 				],
 				"policy": {
@@ -163,6 +221,7 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/SqlServerTable1')]",
+				"[concat(variables('factoryId'), '/linkedServices/AzureDatabricksLinkedService')]",
 				"[concat(variables('factoryId'), '/datasets/ParquetSink')]"
 			]
 		},
@@ -280,6 +339,30 @@
 				}
 			},
 			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureDatabricksLinkedService')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureDatabricks",
+				"typeProperties": {
+					"domain": "https://adb-515295688551882.2.azuredatabricks.net",
+					"accessToken": {
+						"type": "AzureKeyVaultSecret",
+						"store": {
+							"referenceName": "AzureKeyVault1",
+							"type": "LinkedServiceReference"
+						},
+						"secretName": "databricks-token"
+					},
+					"existingClusterId": "[parameters('AzureDatabricksLinkedService_properties_typeProperties_existingClusterId')]"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureKeyVault1')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/AzureKeyVault1')]",
